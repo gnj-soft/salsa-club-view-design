@@ -1,0 +1,25 @@
+<div *ngIf="lesson">
+  <h2>What about this lesson {{ lesson.lessonName | uppercase }} </h2>
+  <br>
+  <div>
+    <span>id: </span>{{lesson.id}}</div>
+  <div>
+    <label>Lesson Name:
+      <input [(ngModel)]="lesson.lessonName" />
+    </label>
+  </div>
+  <div>
+    <label>Lesson level:
+      <input [(ngModel)]="lesson.level">
+    </label>
+  </div>
+  <div>
+    <label>Lesson Start Date : {{ lesson.startDate | date }}</label>
+    <label>Lesson End Date : {{ lesson.endDate | date }}</label>
+    <label>Lesson Duration : {{ lesson.duration }}</label>
+  </div>
+  <br>
+<button (click)="save()">Save</button>
+</div>
+<br>
+<button (click)="goBack()">Go Back</button>

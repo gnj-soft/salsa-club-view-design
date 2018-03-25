@@ -1,0 +1,17 @@
+<div class="form_container">
+  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+    <header>New In Latin Dance ? Here Is The Place To Be <br> <br> Enter New User</header>
+
+    <label>User Name *</label>
+    <input type="text" name="uname" formControlName="uname" />
+    <div class="help">At least 6 character</div>
+
+    <label>Password *</label>
+    <input type="password" class="fortextbox" name="passwd" formControlName="passwd" />
+
+    <label>Email *</label>
+    <input type="text" class="fortextbox" name="emailid" formControlName="emailid" />
+
+    <button [disabled]="!formdata.valid" value="Submit">Add User</button>
+  </form>
+</div>

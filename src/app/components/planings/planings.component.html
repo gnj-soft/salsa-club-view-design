@@ -1,0 +1,35 @@
+<h1>Planings Management</h1>
+<div>
+  <label>Lesson Id:
+    <input #lessonId />
+  </label>
+  <br>
+  <label>Teacher Id:
+    <input #teacherId />
+  </label>
+  <br>
+  <label>Member Id:
+    <input #memberId />
+  </label>
+  <br>
+  <label>Planing Info:
+    <input #note />
+  </label>
+  <br>
+  <br>
+  <button (click)="add(lessonId.value, teacherId.value, memberId.value, note.value); lessonId.value=''; teacherId.value=''; memberId.value=''; note.value=''">
+    Add Planing
+  </button>
+</div>
+<br>
+<h2>All Planings</h2>
+<ul>
+  <li *ngFor="let planing of planings">
+    Lesson Id :
+    <a routerLink="/lesson-detail/{{planing.lessonId}}">{{planing.lessonId}}</a>
+    -- Teacher Id :
+    <a routerLink="/teacher-detail/{{planing.teacherId}}">{{planing.teacherId}}</a>
+    -- Information : {{planing.note}}
+    <button title="delete planing" (click)="delete(planing)">X</button>
+  </li>
+</ul>

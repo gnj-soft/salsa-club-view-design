@@ -1,0 +1,40 @@
+<h1>Lessons Management</h1>
+<div>
+  <h2>Enter New Lesson</h2>
+  <label>Lesson Name:
+    <input #lessonName />
+  </label>
+  <br>
+  <label>Level:
+    <input #level />
+  </label>
+  <br>
+  <label>Lesson Start Date :
+    <input #startDate />
+  </label>
+  <br>
+  <label>Lesson End Date :
+    <input #endDate />
+  </label>
+  <br>
+  <br>
+  <button (click)="add(lessonName.value, level.value, startDate.value, endDate.value); lessonName.value=''; level.value=''; startDate.value=''; endDate.value=''">
+    Add Lesson
+  </button>
+</div>
+<br>
+<h2>All Lessons</h2>
+<ul>
+  <li *ngFor="let lesson of lessons">
+    <label>
+      Lesson level : {{lesson.level}}
+    </label>
+    <label>
+      Name :
+      <a routerLink="/lesson-detail/{{lesson.id}}">
+        {{lesson.lessonName}}
+      </a>
+    </label>
+    <button title="delete lesson" (click)="delete(lesson)">X</button>
+  </li>
+</ul>

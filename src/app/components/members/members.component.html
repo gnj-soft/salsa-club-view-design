@@ -1,0 +1,28 @@
+<h1>List of Members</h1>
+<div>
+  <label>Member first name:
+    <input #firstName />
+  </label>
+  <br>
+  <label>Member name:
+    <input #lastName />
+  </label>
+  <br>
+  <label>Member level :
+    <input #level />
+  </label>
+  <br> <br>
+  <button (click)="add(firstName.value, lastName.value, level.value); firstName.value=''; lastName.value=''; level.value=''">
+    Add Member
+  </button>
+</div> <br>
+<h2>All Members</h2>
+<ul>
+  <li *ngFor="let member of members">
+    <a routerLink="/member-detail/{{member.id}}">
+      {{member.lastName}}
+    </a>
+    <button title="delete member" (click)="delete(member)">X</button>    
+  </li>
+</ul>
+

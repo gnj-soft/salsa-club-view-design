@@ -1,0 +1,10 @@
+.global_container{
+    margin : 0 auto;
+    width: 60em;
+ }
+
+ .user_infos{
+    background: #F4A460;
+    color: white;
+    text-align:right;
+ }

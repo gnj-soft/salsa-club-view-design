@@ -1,0 +1,27 @@
+<h1>List of Teachers</h1>
+<div>
+  <label>Teacher first name:
+    <input #firstName />
+  </label>
+  <br>
+  <label>Teacher name:
+    <input #lastName />
+  </label>
+  <br>
+  <label>Teacher Short Note:
+    <input #shortNote />
+  </label>
+  <br> <br>
+  <button (click)="add(firstName.value, lastName.value, shortNote.value); firstName.value=''; lastName.value=''; shortNote.value=''">
+    Add Teacher
+  </button>
+</div> <br>
+<h2>All Teachers</h2>
+<ul>
+  <li *ngFor="let teacher of teachers">
+    <a routerLink="/teacher-detail/{{teacher.id}}">
+      {{teacher.lastName}}
+    </a>
+    <button title="delete teacher" (click)="delete(teacher)">X</button>    
+  </li>
+</ul>
