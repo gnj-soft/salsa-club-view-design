@@ -17,5 +17,5 @@
 
     <button [disabled]="!formdata.valid" value="Login">Login</button>
   </form>
-  <app-new-login></app-new-login>
+  <app-new-login (newLoginChange)="addNewLoginToList($event)"></app-new-login>
 </div>

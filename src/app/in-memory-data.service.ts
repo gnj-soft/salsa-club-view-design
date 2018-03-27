@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 27, lessonName: 'Registrala', level: 3, startDate: new Date(2018, 5, 11), endDate: new Date(2018, 9, 11), duration: 4 },
       { id: 28, lessonName: 'Copelia complicada', level: 2, startDate: new Date(2018, 4, 20), endDate: new Date(2018, 7, 20), duration: 3 },
       { id: 29, lessonName: 'Cunada', level: 4, startDate: new Date(2018, 7, 30), endDate: new Date(2018, 12, 30), duration: 5 },
-      { id: 30, lessonName: 'Vacuna', level: 5, startDate: new Date(2018, 8, 17), endDate: new Date(2018, 10, 17), duration: 2 },
+      { id: 30, lessonName: 'Vacuna', level: 5, startDate: new Date(2018, 8, 17), endDate: new Date(2018, 10, 17), duration: 2 }
     ];
     const planings = [
       { id: 1, lessonId: 22, teacherId: 6, memberId: 11, note: "Setenta is one of the most important figure in salsa cubaine" },
@@ -49,21 +49,21 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 7, lessonId: 23, teacherId: 8, memberId: 6, note: "Very beautiful, Ochenta Y Quatro belong to level 3" },
       { id: 8, lessonId: 27, teacherId: 10, memberId: 8, note: "Elegant and nice when you get it, Registrala belong to level 3++" },
       { id: 9, lessonId: 24, teacherId: 14, memberId: 10, note: "Not easy to understand by girls, Pirouli is nice to see and belong to level 3" },
-      { id: 10, lessonId: 21, teacherId: 12, memberId: 2, note: "Sombrero is a hat ... first good figure in salsa cubain" },
+      { id: 10, lessonId: 21, teacherId: 12, memberId: 2, note: "Sombrero is a hat ... first good figure in salsa cubain" }
     ];
     const logins = [
-      { id: 2, username: 'rapha', password: 'student' },
-      { id: 3, username: 'ghis soft', password: 'jef' },
-      { id: 4, username: 'owélie', password: 'salsa' },
-      { id: 5, username: 'chrichri', password: 'defontes' },
-      { id: 6, username: 'flory', password: 'boet' },
-      { id: 7, username: 'kabil', password: 'guendouze' },
-      { id: 8, username: 'sage femme', password: 'lerichemunoz MUNOZ' },
-      { id: 9, username: 'le riche', password: 'kouam' },
-      { id: 10, username: 'principe', password: 'pula' },
-      { id: 11, username: 'foot throwing', password: 'dusseaux' },
-      { id: 12, username: 'la grande', password: 'druesne' }
+      { id: 2, username: 'raphaella', password: 'student', email: "rapha.student@gmail.com" },
+      { id: 3, username: 'ghis soft', password: 'jefsoft', email: "gigi.soft@gmail.com" },
+      { id: 4, username: 'owélie', password: 'salsa', email: "awelie.salsa@gmail.com" },
+      { id: 5, username: 'chrichri', password: 'defontes', email: "de.fontes@hotmail.fr" },
+      { id: 6, username: 'flory L', password: 'floryboet', email: "flory.boet@gmail.com" },
+      { id: 7, username: 'kabil rachid', password: 'guendouze', email: "guendouze@yahoo.com" },
+      { id: 8, username: 'sage femme', password: 'lerichemunoz MUNOZ', email: "aurore.munozt@hotmail.com" },
+      { id: 9, username: 'le boss', password: 'carleskouam', email: "carles.kouam@gmail.com" },
+      { id: 10, username: 'le richou', password: 'richoupula', email: "richard.pula@gmail.com" },
+      { id: 11, username: 'foot throwing', password: 'dusseaux', email: "marion.dusseaux@live.com" },
+      { id: 12, username: 'la grande', password: 'druesne', email: "jose.druesne@gmail.com" }
     ];
-    return {logins, teachers, members, lessons, planings};
+    return {teachers, members, lessons, planings, logins};
   }
 }

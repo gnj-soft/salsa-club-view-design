@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   formdata;
   loginValue = false;
   login: Login;
+  newLogin: Login;
   @Output() loginChange = new EventEmitter();
   @Output() usernameChange = new EventEmitter();
 
@@ -43,6 +44,13 @@ export class LoginComponent implements OnInit {
       alert("Invalid Login");
       return false;
     }
+  }
+
+  addNewLoginToList(event) {
+    this.newLogin = event.value;
+    if (this.newLogin) {
+      this.logins.push(this.newLogin);
+    }  
   }
 
   ngOnInit() {

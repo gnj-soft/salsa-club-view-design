@@ -20,10 +20,11 @@ export class LoginService {
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   addLogin(login: Login): Observable<Login> {
-    return this.http.post<Login>(this.loginsUrl, login, httpOptions)
-      .pipe(
-        tap((login: Login) => this.log(`added addLogin id=${login.id}`)),
-        catchError(this.handleError<Login>('addLogin')));
+     return this.http.post<Login>(this.loginsUrl, login, httpOptions)
+       .pipe(
+         tap(returnLogin => this.log(`added addLogin id=${returnLogin.id}`)),
+         catchError(this.handleError<Login>('addLogin')));
+    //return this.http.post<Login>(this.loginsUrl, login, httpOptions);
   }
 
   updateLogin(login: Login): Observable<any> {
