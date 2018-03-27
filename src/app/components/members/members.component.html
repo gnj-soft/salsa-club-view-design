@@ -1,28 +1,28 @@
-<h1>List of Members</h1>
-<div>
-  <label>Member first name:
-    <input #firstName />
-  </label>
-  <br>
-  <label>Member name:
-    <input #lastName />
-  </label>
-  <br>
-  <label>Member level :
-    <input #level />
-  </label>
-  <br> <br>
-  <button (click)="add(firstName.value, lastName.value, level.value); firstName.value=''; lastName.value=''; level.value=''">
-    Add Member
-  </button>
-</div> <br>
-<h2>All Members</h2>
+<h1>Members Management</h1>
+
+<div class="member_form_container">
+  <form [formGroup]="newMemberFormData" (ngSubmit)="onSubmit(newMemberFormData.value)">
+    <header>Enter New Member : Please Don't Forget Member Infos</header>
+
+    <label>Member First Name *</label>
+    <input type="text" name="firstName" formControlName="firstName" />
+
+    <label>Member Name *</label>
+    <input type="text" name="lastName" formControlName="lastName" />
+
+    <label>Member Level *</label>
+    <input type="text" name="level" formControlName="level" />
+
+    <button [disabled]="!newMemberFormData.valid" value="Submit">New Member</button>
+  </form>
+</div>
+
+<h1>All Members</h1>
 <ul>
   <li *ngFor="let member of members">
     <a routerLink="/member-detail/{{member.id}}">
-      {{member.lastName}}
+      {{member.lastName | uppercase}}
     </a>
-    <button title="delete member" (click)="delete(member)">X</button>    
+    <button title="delete member" (click)="delete(member)">X</button>
   </li>
 </ul>
-

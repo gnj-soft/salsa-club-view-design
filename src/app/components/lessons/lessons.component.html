@@ -1,29 +1,26 @@
 <h1>Lessons Management</h1>
-<div>
-  <h2>Enter New Lesson</h2>
-  <label>Lesson Name:
-    <input #lessonName />
-  </label>
-  <br>
-  <label>Level:
-    <input #level />
-  </label>
-  <br>
-  <label>Lesson Start Date :
-    <input #startDate />
-  </label>
-  <br>
-  <label>Lesson End Date :
-    <input #endDate />
-  </label>
-  <br>
-  <br>
-  <button (click)="add(lessonName.value, level.value, startDate.value, endDate.value); lessonName.value=''; level.value=''; startDate.value=''; endDate.value=''">
-    Add Lesson
-  </button>
+
+<div class="lesson_form_container">
+  <form [formGroup]="newLessonFormData" (ngSubmit)="onSubmit(newLessonFormData.value)">
+    <header>Enter New Lesson : Please Don't Forget Lesson Infos</header>
+
+    <label>Lesson Name *</label>
+    <input type="text" name="lessonName" formControlName="lessonName" />
+
+    <label>Level *</label>
+    <input type="text" name="level" formControlName="level" />
+
+    <label>Lesson Start Date *</label>
+    <input type="text" name="startDate" formControlName="startDate" />
+
+    <label>Lesson End Date *</label>
+    <input type="text" name="endDate" formControlName="endDate" />
+
+    <button [disabled]="!newLessonFormData.valid" value="Submit">New Lesson</button>
+  </form>
 </div>
-<br>
-<h2>All Lessons</h2>
+
+<h1>All Lessons</h1>
 <ul>
   <li *ngFor="let lesson of lessons">
     <label>

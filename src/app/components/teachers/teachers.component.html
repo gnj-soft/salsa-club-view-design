@@ -1,27 +1,28 @@
 <h1>List of Teachers</h1>
-<div>
-  <label>Teacher first name:
-    <input #firstName />
-  </label>
-  <br>
-  <label>Teacher name:
-    <input #lastName />
-  </label>
-  <br>
-  <label>Teacher Short Note:
-    <input #shortNote />
-  </label>
-  <br> <br>
-  <button (click)="add(firstName.value, lastName.value, shortNote.value); firstName.value=''; lastName.value=''; shortNote.value=''">
-    Add Teacher
-  </button>
-</div> <br>
-<h2>All Teachers</h2>
+
+<div class="teacher_form_container">
+  <form [formGroup]="newTeacherFormData" (ngSubmit)="onSubmit(newTeacherFormData.value)">
+    <header>Enter New Teacher : Please Don't Forget Teacher Infos</header>
+
+    <label>Teacher first name *</label>
+    <input type="text" name="firstName" formControlName="firstName" />
+
+    <label>Teacher name *</label>
+    <input type="text" name="lastName" formControlName="lastName" />
+
+    <label>Teacher Short Note</label>
+    <input type="text" name="shortNote" formControlName="shortNote" />
+
+    <button [disabled]="!newTeacherFormData.valid" value="Submit">New Teacher</button>
+  </form>
+</div>
+
+<h1>All Teachers</h1>
 <ul>
   <li *ngFor="let teacher of teachers">
     <a routerLink="/teacher-detail/{{teacher.id}}">
-      {{teacher.lastName}}
+      {{teacher.lastName | uppercase}}
     </a>
-    <button title="delete teacher" (click)="delete(teacher)">X</button>    
+    <button title="delete teacher" (click)="delete(teacher)">X</button>
   </li>
 </ul>

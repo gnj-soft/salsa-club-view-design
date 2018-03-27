@@ -1,6 +1,5 @@
 <div *ngIf="lesson">
-  <h2>What about this lesson {{ lesson.lessonName | uppercase }} </h2>
-  <br>
+  <header>What about this lesson {{ lesson.lessonName | uppercase }} </header>
   <div>
     <span>id: </span>{{lesson.id}}</div>
   <div>
@@ -18,8 +17,6 @@
     <label>Lesson End Date : {{ lesson.endDate | date }}</label>
     <label>Lesson Duration : {{ lesson.duration }}</label>
   </div>
-  <br>
-<button (click)="save()">Save</button>
+<button (click)="save()">Save Lesson</button>
 </div>
-<br>
 <button (click)="goBack()">Go Back</button>

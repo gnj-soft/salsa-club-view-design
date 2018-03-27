@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
+
 import { Lesson } from '../../models/lesson';
 import { LessonService } from '../../services/lesson.service';
 
@@ -10,6 +12,7 @@ import { LessonService } from '../../services/lesson.service';
 export class LessonsComponent implements OnInit {
 
   lessons: Lesson[];
+  newLessonFormData;
 
   constructor(private lessonService: LessonService) { }
 
@@ -29,7 +32,26 @@ export class LessonsComponent implements OnInit {
     this.lessonService.deleteLesson(lesson).subscribe();
   }
 
+  onSubmit(data): void {
+    this.add(data.lessonName, data.level, data.startDate, data.endDate);
+    this.newLessonFormData.reset();
+  }
+
   ngOnInit() {
     this.getLessons();
+    this.newLessonFormData = new FormGroup({
+      lessonName: new FormControl("", Validators.compose([
+         Validators.required
+      ])),
+      level: new FormControl("", Validators.compose([
+         Validators.required
+      ])),
+      startDate: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      endDate: new FormControl("", Validators.compose([
+        Validators.required
+      ]))
+   });
   }
 }

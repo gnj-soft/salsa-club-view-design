@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { Member } from "../../models/member";
 import { MemberService } from '../../services/member.service';
@@ -11,6 +12,7 @@ import { MemberService } from '../../services/member.service';
 export class MembersComponent implements OnInit {
 
   members: Member[];
+  newMemberFormData;
 
   constructor(private memberService: MemberService) { }
 
@@ -31,7 +33,23 @@ export class MembersComponent implements OnInit {
     this.memberService.deleteMember(member).subscribe();
   }
 
+  onSubmit(data): void {
+    this.add(data.firstName, data.lastName, data.level);
+    this.newMemberFormData.reset();
+  }
+
   ngOnInit() {
     this.getMembers();
+    this.newMemberFormData = new FormGroup({
+      firstName: new FormControl("", Validators.compose([
+         Validators.required
+      ])),
+      lastName: new FormControl("", Validators.compose([
+         Validators.required
+      ])),
+      level: new FormControl("", Validators.compose([
+        Validators.required
+      ]))
+   });
   }
 }

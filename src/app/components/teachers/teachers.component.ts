@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Teacher } from '../../models/teacher';
 import { TeacherService } from "../../services/teacher.service";
@@ -11,6 +12,8 @@ import { TeacherService } from "../../services/teacher.service";
 export class TeachersComponent implements OnInit {
 
   teachers: Teacher[];
+  newTeacherFormData;
+
 
   constructor(private teacherService: TeacherService) { }
 
@@ -22,11 +25,11 @@ export class TeachersComponent implements OnInit {
     firstName = firstName.trim();
     lastName = lastName.trim();
     info = info.trim();
-    if (!firstName || !lastName) { return; }
+    if (!firstName ||  !lastName) { return; }
     if (!info) {
       info = "Note not available";
     }
-    this.teacherService.addTeacher({ firstName, lastName, info } as Teacher )
+    this.teacherService.addTeacher({ firstName, lastName, info } as Teacher)
       .subscribe(teacher => {
         this.teachers.push(teacher);
       });
@@ -37,7 +40,23 @@ export class TeachersComponent implements OnInit {
     this.teacherService.deleteTeacher(teacher).subscribe();
   }
 
+  onSubmit(data): void {
+    this.add(data.firstName, data.lastName, data.shortNote);
+    this.newTeacherFormData.reset();
+  }
+
   ngOnInit() {
     this.getTeachers();
+    this.newTeacherFormData = new FormGroup({
+      firstName: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      lastName: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      shortNote: new FormControl("", Validators.compose([
+        Validators.required
+      ]))
+    });
   }
 }

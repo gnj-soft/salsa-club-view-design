@@ -1,9 +1,7 @@
-<!--h1>Teacher is : {{teacher | json}}</h1-->
 
 <div *ngIf="teacher">
-  <h2>More about {{ teacher.lastName | uppercase }} </h2><br>
+  <header>More about {{ teacher.lastName | uppercase }} </header>
   <div><span>id: </span>{{teacher.id}}</div>
-  <!--div><label>First name: </label> {{teacher.firstName}}</div-->
   <div>
     <label>First name: 
      <input [(ngModel)]="teacher.firstName"/>
@@ -15,8 +13,6 @@
     </label>
   </div>
   <div><label>Note About {{teacher.firstName}} {{teacher.lastName}} : </label> {{teacher.info}} !</div>
+  <button (click)="save()">Save Plaing</button>
 </div>
-<br>
-<button (click)="save()">Save</button>
-<br>
 <button (click)="goBack()">Go Back</button>

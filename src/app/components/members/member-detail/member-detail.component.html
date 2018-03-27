@@ -1,5 +1,6 @@
 <div *ngIf="member">
-  <h2>Who is {{ member.lastName | uppercase }} </h2><br>
+
+  <header>Who is {{ member.lastName | uppercase }} </header>
   <div><span>id: </span>{{member.id}}</div>
   <div>
     <label>First name: 
@@ -12,8 +13,6 @@
     </label>
   </div>
   <div><span>Level: </span>{{member.level}}</div>
+  <button (click)="save()">Save Member</button>
 </div>
-<br>
-<button (click)="save()">Save</button>
-<br>
 <button (click)="goBack()">Go Back</button>
