@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { Lesson } from '../../models/lesson';
 import { LessonService } from '../../services/lesson.service';
+import { ConstantsService } from '../../services/constants.service';
 
 @Component({
   selector: 'app-lessons',
@@ -11,10 +12,21 @@ import { LessonService } from '../../services/lesson.service';
 })
 export class LessonsComponent implements OnInit {
 
+  title = "Lessons Management";
+  lessonFormHeader = "Enter New Lesson : Please Don't Forget Lesson Infos";
+  subtitle = "Programming Lessons";
+
+  
+  lessonsList;
+  lessonLevels;
+
   lessons: Lesson[];
   newLessonFormData;
 
-  constructor(private lessonService: LessonService) { }
+  constructor(
+    private lessonService: LessonService,
+    private constantsService: ConstantsService
+  ) { }
 
   getLessons(): void {
     this.lessonService.getLessons().subscribe(lessons => this.lessons = lessons);
@@ -39,10 +51,12 @@ export class LessonsComponent implements OnInit {
 
   ngOnInit() {
     this.getLessons();
+    this.lessonsList = this.constantsService.lessonsList;
+    this.lessonLevels = this.constantsService.level;
     this.newLessonFormData = new FormGroup({
       lessonName: new FormControl("", Validators.compose([
-         Validators.required
-      ])),
+        Validators.required
+     ])),
       level: new FormControl("", Validators.compose([
          Validators.required
       ])),

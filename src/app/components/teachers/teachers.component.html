@@ -1,8 +1,8 @@
-<h1>List of Teachers</h1>
+<h1>{{title}}</h1>
 
 <div class="teacher_form_container">
   <form [formGroup]="newTeacherFormData" (ngSubmit)="onSubmit(newTeacherFormData.value)">
-    <header>Enter New Teacher : Please Don't Forget Teacher Infos</header>
+    <header>{{formHeader}}</header>
 
     <label>Teacher first name *</label>
     <input type="text" name="firstName" formControlName="firstName" />
@@ -13,11 +13,13 @@
     <label>Teacher Short Note</label>
     <input type="text" name="shortNote" formControlName="shortNote" />
 
+    <div class="help">(*) fields are mandatory</div>
+
     <button [disabled]="!newTeacherFormData.valid" value="Submit">New Teacher</button>
   </form>
 </div>
 
-<h1>All Teachers</h1>
+<h1>{{subtitle}}</h1>
 <ul>
   <li *ngFor="let teacher of teachers">
     <a routerLink="/teacher-detail/{{teacher.id}}">

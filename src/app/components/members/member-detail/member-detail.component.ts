@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Member } from '../../../models/member';
 import { MemberService } from '../../../services/member.service';
+import { ConstantsService } from '../../../services/constants.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -12,10 +13,15 @@ import { MemberService } from '../../../services/member.service';
 })
 export class MemberDetailComponent implements OnInit {
 
+  detailHeader = "Who is";
+
+  memberLevels;
+
   member: Member;
 
   constructor(
     private memberService: MemberService,
+    private constantsService: ConstantsService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -34,6 +40,7 @@ export class MemberDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.memberLevels = this.constantsService.level;
     this.getMember();
   }
 }

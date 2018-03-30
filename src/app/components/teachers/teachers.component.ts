@@ -11,6 +11,10 @@ import { TeacherService } from "../../services/teacher.service";
 })
 export class TeachersComponent implements OnInit {
 
+  title = "Teacher Management";
+  formHeader = "Enter New Teacher : Please Don't Forget Teacher Infos";
+  subtitle = "As You Can See, We Have Most Of Greatest Teachers...";
+
   teachers: Teacher[];
   newTeacherFormData;
 

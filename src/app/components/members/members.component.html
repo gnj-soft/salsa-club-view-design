@@ -1,23 +1,29 @@
-<h1>Members Management</h1>
+<h1>{{title}}</h1>
 
 <div class="member_form_container">
   <form [formGroup]="newMemberFormData" (ngSubmit)="onSubmit(newMemberFormData.value)">
-    <header>Enter New Member : Please Don't Forget Member Infos</header>
+    <header>{{formHeader}}</header>
 
+    <label>Member Level *</label>
+    <select formControlName="level">
+      <option value="">Please select a Level</option>
+      <option *ngFor="let lev of memberLevels" [value]="lev">{{lev}}</option>
+    </select>
+
+    <br>
     <label>Member First Name *</label>
     <input type="text" name="firstName" formControlName="firstName" />
 
     <label>Member Name *</label>
     <input type="text" name="lastName" formControlName="lastName" />
 
-    <label>Member Level *</label>
-    <input type="text" name="level" formControlName="level" />
-
+    <div class="help">(*) fields are mandatory</div>
+    
     <button [disabled]="!newMemberFormData.valid" value="Submit">New Member</button>
   </form>
 </div>
 
-<h1>All Members</h1>
+<h1>{{subtitle}}</h1>
 <ul>
   <li *ngFor="let member of members">
     <a routerLink="/member-detail/{{member.id}}">

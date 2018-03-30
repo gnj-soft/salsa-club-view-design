@@ -12,6 +12,8 @@ import { TeacherService } from "../../../services/teacher.service";
 })
 export class TeacherDetailComponent implements OnInit {
 
+  detailHeader = "More about";
+
   teacher : Teacher;
 
   constructor(

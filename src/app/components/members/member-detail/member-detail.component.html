@@ -1,18 +1,26 @@
 <div *ngIf="member">
 
   <header>Who is {{ member.lastName | uppercase }} </header>
-  <div><span>id: </span>{{member.id}}</div>
   <div>
-    <label>First name: 
-     <input [(ngModel)]="member.firstName"/>
-    </label> 
+    <span>id: </span>{{member.id}}</div>
+  <div>
+    <label>First name:
+      <input [(ngModel)]="member.firstName" />
+    </label>
   </div>
   <div>
-    <label>Name: 
+    <label>Name:
       <input [(ngModel)]="member.lastName">
     </label>
   </div>
-  <div><span>Level: </span>{{member.level}}</div>
+  <div>
+    <label> Level:
+      <select [(ngModel)]="member.level">
+        <option value="lesson.level">{{member.level}}</option>
+        <option *ngFor="let lev of memberLevels" [value]="lev">{{lev}}</option>
+      </select>
+    </label>
+  </div>
   <button (click)="save()">Save Member</button>
 </div>
 <button (click)="goBack()">Go Back</button>

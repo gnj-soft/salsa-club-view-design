@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+
+import { MyOwnMaterialModule } from "./modules/my-own-material/my-own-material.module";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -30,6 +33,7 @@ import { LessonService } from './services/lesson.service';
 import { LoginService } from './services/login.service';
 
 import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
+import { ConstantsService } from './services/constants.service';
 
 
 
@@ -52,6 +56,8 @@ import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MyOwnMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -70,7 +76,8 @@ import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
     MemberService,
     PlaningService,
     LessonService,
-    LoginService
+    LoginService,
+    ConstantsService
   ],
   bootstrap: [AppComponent]
 })

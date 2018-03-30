@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { Member } from "../../models/member";
 import { MemberService } from '../../services/member.service';
+import { ConstantsService } from '../../services/constants.service';
 
 @Component({
   selector: 'app-members',
@@ -11,10 +12,19 @@ import { MemberService } from '../../services/member.service';
 })
 export class MembersComponent implements OnInit {
 
+  title = "Members Management";
+  formHeader = "Enter New Member : Please Don't Forget Member Infos";
+  subtitle = "Our Members";
+
+  memberLevels;
+
   members: Member[];
   newMemberFormData;
 
-  constructor(private memberService: MemberService) { }
+  constructor(
+    private memberService: MemberService,
+    private constantsService: ConstantsService,
+  ) { }
 
   getMembers(): void {
     this.memberService.getMembers().subscribe(members => this.members = members);
@@ -40,6 +50,7 @@ export class MembersComponent implements OnInit {
 
   ngOnInit() {
     this.getMembers();
+    this.memberLevels = this.constantsService.level;
     this.newMemberFormData = new FormGroup({
       firstName: new FormControl("", Validators.compose([
          Validators.required

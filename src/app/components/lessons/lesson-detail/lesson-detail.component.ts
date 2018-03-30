@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Lesson } from '../../../models/lesson';
 import { LessonService } from '../../../services/lesson.service';
+import { ConstantsService } from '../../../services/constants.service';
 
 @Component({
   selector: 'app-lesson-detail',
@@ -11,11 +12,17 @@ import { LessonService } from '../../../services/lesson.service';
   styleUrls: ['./lesson-detail.component.css']
 })
 export class LessonDetailComponent implements OnInit {
+
+  detailHeader = "What about this lesson";
   
+  lessonsList;
+  lessonLevels;
+
   lesson: Lesson;
 
   constructor(
     private lessonService: LessonService,
+    private constantsService: ConstantsService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -34,6 +41,8 @@ export class LessonDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lessonsList = this.constantsService.lessonsList;
+    this.lessonLevels = this.constantsService.level;
     this.getLesson();
   }
 }

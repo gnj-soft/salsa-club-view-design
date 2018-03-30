@@ -1,22 +1,28 @@
 <div *ngIf="lesson">
-  <header>What about this lesson {{ lesson.lessonName | uppercase }} </header>
+  <header>{{ detailHeader }} {{ lesson.lessonName | uppercase }} </header>
   <div>
     <span>id: </span>{{lesson.id}}</div>
   <div>
     <label>Lesson Name:
-      <input [(ngModel)]="lesson.lessonName" />
+      <select [(ngModel)]="lesson.lessonName">
+        <option value="lesson.lessonName">{{lesson.lessonName}}</option>
+        <option *ngFor="let less of lessonsList" [value]="less">{{less}}</option>
+      </select>
     </label>
   </div>
   <div>
     <label>Lesson level:
-      <input [(ngModel)]="lesson.level">
+      <select [(ngModel)]="lesson.level">
+        <option value="lesson.level">{{lesson.level}}</option>
+        <option *ngFor="let lev of lessonLevels" [value]="lev">{{lev}}</option>
+      </select>
     </label>
   </div>
   <div>
-    <label>Lesson Start Date : {{ lesson.startDate | date }}</label>
-    <label>Lesson End Date : {{ lesson.endDate | date }}</label>
+    <label>Lesson Start Date : {{ lesson.startDate | date }} ** </label>
+    <label>Lesson End Date : {{ lesson.endDate | date }} ** </label>
     <label>Lesson Duration : {{ lesson.duration }}</label>
   </div>
-<button (click)="save()">Save Lesson</button>
+  <button (click)="save()">Save Lesson</button>
 </div>
 <button (click)="goBack()">Go Back</button>

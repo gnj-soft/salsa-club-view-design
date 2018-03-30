@@ -1,10 +1,32 @@
-.global_container{
-    margin : 0 auto;
-    width: 60em;
- }
+.global_container {
+  margin: 0 auto;
+  width: 60em;
+}
 
- .user_infos{
-    background: #F4A460;
-    color: white;
-    text-align:right;
- }
+.user_infos {
+  background: #F4A460;
+  color: white;
+  text-align: right;
+}
+
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+nav a:visited, a:link {
+  color: #607D8B;
+}
+
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+
+nav a.active {
+  color: #039be5;
+}
