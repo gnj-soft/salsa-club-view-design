@@ -4,15 +4,28 @@
   <form [formGroup]="newPlaningFormData" (ngSubmit)="onSubmit(newPlaningFormData.value)">
     <header>Enter New Planing : Please Don't Forget Planing Infos</header>
 
-    <label>Lesson Id *</label>
-    <input type="text" name="lessonId" formControlName="lessonId" />
+    <label>Lesson *</label>
+    <select formControlName="lessonId">
+        <option value="">Please select a Lesson</option>
+        <option *ngFor="let lesson of lessons" [value]="lesson.id">{{lesson.id}} - {{lesson.lessonName}}</option>
+      </select>
 
-    <label>Teacher Id *</label>
-    <input type="text" name="teacherId" formControlName="teacherId" />
 
-    <label>Member Id *</label>
-    <input type="text" name="memberId" formControlName="memberId" />
+      <br>
+    <label>Teacher *</label>
+    <select formControlName="teacherId">
+      <option value="">Please select a Teacher</option>
+      <option *ngFor="let teacher of teachers" [value]="teacher.id">{{teacher.id}} - {{teacher.firstName}} {{teacher.lastName}}</option>
+    </select>
 
+    <br>
+    <label>Member *</label>
+    <select formControlName="memberId">
+      <option value="">Please select a Member</option>
+      <option *ngFor="let member of members" [value]="member.id">{{member.id}} - {{member.firstName}} {{member.lastName}}</option>
+    </select>
+
+    <br>
     <label>Planing Information</label>
     <input type="text" name="note" formControlName="note" />
 
@@ -23,13 +36,13 @@
 </div>
 
 <h1>All Planings</h1>
-<ul>
+<ul class="planings">
   <li *ngFor="let planing of planings">
     Lesson Id :
-    <a routerLink="/lesson-detail/{{planing.lessonId}}">{{planing.lessonId}}</a>
+    <a routerLink="/lesson-detail/{{planing.lessonId}}">{{planing.lessonId}} </a>
     -- Teacher Id :
     <a routerLink="/teacher-detail/{{planing.teacherId}}">{{planing.teacherId}}</a>
     -- Information : {{planing.note}}
-    <button title="delete planing" (click)="delete(planing)">X</button>
+    <button class="delete" title="delete planing" (click)="delete(planing)">X</button>
   </li>
 </ul>

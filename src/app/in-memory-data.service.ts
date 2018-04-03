@@ -24,6 +24,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 8, firstName: 'Aurore', lastName: 'LERICHE MUNOZ', level: 0 },
       { id: 9, firstName: 'Carles', lastName: 'KOUAM', level: 2 },
       { id: 10, firstName: 'Richard', lastName: 'PULA', level: 1 },
+      { id: 11, firstName: 'Tima Zahra', lastName: 'DIRANE', level: 0 },
       { id: 11, firstName: 'Marion', lastName: 'DUSSEAUX', level: 0 },
       { id: 12, firstName: 'Joséphine', lastName: 'DRUESNE', level: 3 }
     ];
@@ -61,8 +62,9 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 8, username: 'sage femme', password: 'lerichemunoz MUNOZ', email: "aurore.munozt@hotmail.com" },
       { id: 9, username: 'le boss', password: 'carleskouam', email: "carles.kouam@gmail.com" },
       { id: 10, username: 'le richou', password: 'richoupula', email: "richard.pula@gmail.com" },
-      { id: 11, username: 'foot throwing', password: 'dusseaux', email: "marion.dusseaux@live.com" },
-      { id: 12, username: 'la grande', password: 'druesne', email: "jose.druesne@gmail.com" }
+      { id: 11, username: 'zahra t', password: 'zahrat', email: "zahra.zahra@live.com" },
+      { id: 12, username: 'foot throwing', password: 'dusseaux', email: "marion.dusseaux@live.com" },
+      { id: 13, username: 'la grande', password: 'druesne', email: "jose.druesne@gmail.com" }
     ];
     return {teachers, members, lessons, planings, logins};
   }

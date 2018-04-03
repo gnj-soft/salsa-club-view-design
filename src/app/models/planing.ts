@@ -4,4 +4,6 @@ export class Planing {
     teacherId: number;
     memberId: number;
     note: string;
+    lessonName: string;
+    teacherName: string;
 }

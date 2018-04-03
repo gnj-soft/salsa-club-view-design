@@ -42,7 +42,7 @@
 </div>
 
 <h1>{{subtitle}}</h1>
-<ul>
+<ul class="lessons">
   <li *ngFor="let lesson of lessons">
     <label>
       Lesson level : {{lesson.level}}
@@ -53,6 +53,6 @@
         {{lesson.lessonName}}
       </a>
     </label>
-    <button title="delete lesson" (click)="delete(lesson)">X</button>
+    <button class="delete" title="delete lesson" (click)="delete(lesson)">X</button>
   </li>
 </ul>

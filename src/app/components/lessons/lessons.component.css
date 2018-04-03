@@ -43,3 +43,43 @@
   form button:hover {
     background: #A6AEAF;
   }
+
+  .lessons {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 27em;
+  }
+
+  .lessons li {
+    position: relative;
+    cursor: pointer;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+
+  .lessons li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+
+  .lessons a {
+    color: #888;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .lessons a:hover {
+    color: #607D8B;
+  }
+
+  button.delete {
+    position: relative;
+    background-color: gray;
+    color: white;
+    float: right;
+  }

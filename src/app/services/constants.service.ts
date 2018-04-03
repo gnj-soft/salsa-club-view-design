@@ -29,6 +29,7 @@ export class ConstantsService {
     'Melao',
     'Cunada',
     'Vacuna',
+    'Guanabo'
   ];
 
   constructor() { }

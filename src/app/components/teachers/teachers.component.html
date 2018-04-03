@@ -20,11 +20,11 @@
 </div>
 
 <h1>{{subtitle}}</h1>
-<ul>
+<ul class="teachers">
   <li *ngFor="let teacher of teachers">
     <a routerLink="/teacher-detail/{{teacher.id}}">
       {{teacher.lastName | uppercase}}
     </a>
-    <button title="delete teacher" (click)="delete(teacher)">X</button>
+    <button class="delete" title="delete teacher" (click)="delete(teacher)">X</button>
   </li>
 </ul>

@@ -34,6 +34,7 @@ import { LoginService } from './services/login.service';
 
 import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
 import { ConstantsService } from './services/constants.service';
+import { InitDataService } from './services/init-data.service';
 
 
 
@@ -77,7 +78,8 @@ import { ConstantsService } from './services/constants.service';
     PlaningService,
     LessonService,
     LoginService,
-    ConstantsService
+    ConstantsService,
+    InitDataService
   ],
   bootstrap: [AppComponent]
 })
