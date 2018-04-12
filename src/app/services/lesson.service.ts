@@ -15,44 +15,47 @@ const httpOptions = {
 @Injectable()
 export class LessonService {
 
-  private lessonsUrl = 'api/lessons';
+  //private lessonsUrl = 'api/lessons';
+  private lessonsUrl = 'http://localhost:8080/lessons';
 
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   getLessons(): Observable<Lesson[]> {
-    return this.http.get<Lesson[]>(this.lessonsUrl)
-      .pipe(
-        tap(lessons =>
-          catchError(this.handleError('getLessons', []))
-        ));
+    return this.http.get<Lesson[]>(this.lessonsUrl).pipe(
+      tap(lessons => this.log(`Fetched lessons`)),
+      catchError(this.handleError<Lesson[]>('getLessons', []))
+    );
   }
 
   getLesson(id: number): Observable<Lesson> {
     const url = `${this.lessonsUrl}/${id}`;
-    return this.http.get<Lesson>(url).
-      pipe(tap(_ => catchError(this.handleError<Lesson>(`getLesson id=${id}`))));
+    return this.http.get<Lesson>(url).pipe(
+      tap(_ => this.log(`Fetched lesson id=${id}`)),
+      catchError(this.handleError<Lesson>(`getLesson id=${id}`))
+    );
   }
 
   addLesson(lesson: Lesson): Observable<Lesson> {
-    return this.http.post<Lesson>(this.lessonsUrl, lesson, httpOptions)
-      .pipe(
-        tap((lesson: Lesson) => this.log(`added Lesson id=${lesson.id}`)),
-        catchError(this.handleError<Lesson>('addLesson')));
+    return this.http.post<Lesson>(this.lessonsUrl, lesson, httpOptions).pipe(
+      tap(lesson => this.log(`Added lesson id=${lesson.id}`)),
+      catchError(this.handleError<Lesson>('addLesson'))
+    );
   }
 
   updateLesson(lesson: Lesson): Observable<any> {
-    return this.http.put(this.lessonsUrl, lesson, httpOptions)
-      .pipe(
-        tap(_ => this.log(`update lesson id=${lesson.id}`)),
-        catchError(this.handleError<any>('updateLesson')));
+    return this.http.put(this.lessonsUrl, lesson, httpOptions).pipe(
+      tap(_ => this.log(`Updated lesson id=${lesson.id}`)),
+      catchError(this.handleError<any>('updateLesson'))
+    );
   }
 
-  deleteLesson(lesson: Lesson) {
-    const url = `${this.lessonsUrl}/${lesson.id}`;
-    return this.http.delete<Lesson>(url, httpOptions)
-      .pipe(
-        tap(_ => this.log(`deleted lesson id=${lesson.id}`)),
-        catchError(this.handleError<Lesson>('deleteLesson')));
+  deleteLesson(lesson: Lesson | number): Observable<Lesson> {
+    const id = typeof lesson === 'number' ? lesson : lesson.id;
+    const url = `${this.lessonsUrl}/${id}`;
+    return this.http.delete<Lesson>(url, httpOptions).pipe(
+      tap(_ => this.log(`Deleted lesson id=${id}`)),
+      catchError(this.handleError<Lesson>('deleteLesson'))
+    );
   }
 
   /**
@@ -79,5 +82,4 @@ export class LessonService {
   private log(message: string) {
     this.messageService.add('LessonService : ' + message);
   }
-
 }

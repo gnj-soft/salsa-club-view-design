@@ -15,45 +15,47 @@ const httpOptions = {
 @Injectable()
 export class MemberService {
 
-  private membersUrl = 'api/members';
-  //private membersUrl = 'http://localhost:8080/members';
+  //private membersUrl = 'api/members';
+  private membersUrl = 'http://localhost:8080/members';
 
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   getMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(this.membersUrl)
-      .pipe(
-        tap(members =>
-          catchError(this.handleError('getMembers', []))
-        ));
+    return this.http.get<Member[]>(this.membersUrl).pipe(
+      tap(members => this.log(`Fetched members`)),
+      catchError(this.handleError<Member[]>('getMembers', []))
+    );
   }
 
   addMember(member: Member): Observable<Member> {
-    return this.http.post<Member>(this.membersUrl, member, httpOptions)
-      .pipe(
-        tap((member: Member) => this.log(`added Member id=${member.id}`)),
-        catchError(this.handleError<Member>('addMember')));
+    return this.http.post<Member>(this.membersUrl, member, httpOptions).pipe(
+      tap(member => this.log(`Added member id=${member.id}`)),
+      catchError(this.handleError<Member>('addMember'))
+    );
   }
 
-  deleteMember(member: Member) {
-    const url = `${this.membersUrl}/${member.id}`;
-    return this.http.delete<Member>(url, httpOptions)
-      .pipe(
-        tap(_ => this.log(`deleted member id=${member.id}`)),
-        catchError(this.handleError<Member>('deleteMember')));
+  deleteMember(member: Member | number): Observable<Member> {
+    const id = typeof member === 'number' ? member : member.id;
+    const url = `${this.membersUrl}/${id}`;
+    return this.http.delete<Member>(url, httpOptions).pipe(
+      tap(_ => this.log(`Deleted member id=${id}`)),
+      catchError(this.handleError<Member>('deleteMember'))
+    );
   }
 
   getMember(id: number): Observable<Member> {
     const url = `${this.membersUrl}/${id}`;
-    return this.http.get<Member>(url).
-      pipe(tap(_ => catchError(this.handleError<Member>(`getMember id=${id}`))));
+    return this.http.get<Member>(url).pipe(
+      tap(_ => this.log(`Fetched member id=${id}`)),
+      catchError(this.handleError<Member>(`getMember id=${id}`))
+    );
   }
 
   updateMember(member: Member): Observable<any> {
-    return this.http.put(this.membersUrl, member, httpOptions)
-      .pipe(
-        tap(_ => this.log(`update member id=${member.id}`)),
-        catchError(this.handleError<any>('updateMember')));
+    return this.http.put(this.membersUrl, member, httpOptions).pipe(
+      tap(_ => this.log(`Updated member id=${member.id}`)),
+      catchError(this.handleError<any>('updateMember'))
+    );
   }
 
   /**

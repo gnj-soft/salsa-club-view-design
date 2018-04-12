@@ -15,31 +15,31 @@ const httpOptions = {
 @Injectable()
 export class PlaningService {
 
-  private planingsUrl = 'api/planings';
+  //private planingsUrl = 'api/planings';
+  private planingsUrl = 'http://localhost:8080/planings';
 
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   getPlanings(): Observable<Planing[]> {
-    return this.http.get<Planing[]>(this.planingsUrl)
-      .pipe(
-        tap(members =>
-          catchError(this.handleError('getMembers', []))
-        ));
+    return this.http.get<Planing[]>(this.planingsUrl).pipe(
+      tap(planings => this.log(`Fetched planings`)),
+      catchError(this.handleError<Planing[]>('getPlanings', []))
+    );
   }
 
   addPlaning(planing: Planing): Observable<Planing> {
-    return this.http.post<Planing>(this.planingsUrl, planing, httpOptions)
-    .pipe(
-      tap((planing: Planing) => this.log(`added Planing id=${planing.id}`)),
-      catchError(this.handleError<Planing>('addPlaning')));
+    return this.http.post<Planing>(this.planingsUrl, planing, httpOptions).pipe(
+      tap(planing => this.log(`Added Planing id=${planing.id}`)),
+      catchError(this.handleError<Planing>('addPlaning'))
+    );
   }
 
-  deletePlaning(planing: Planing) {
+  deletePlaning(planing: Planing): Observable<Planing> {
     const url = `${this.planingsUrl}/${planing.id}`;
-    return this.http.delete<Planing>(url, httpOptions)
-    .pipe(
-      tap(_ => this.log(`deleted planing id=${planing.id}`)),
-      catchError(this.handleError<Planing>('deletePlaning')));
+    return this.http.delete<Planing>(url, httpOptions).pipe(
+      tap(_ => this.log(`Deleted planing id=${planing.id}`)),
+      catchError(this.handleError<Planing>('deletePlaning'))
+    );
   }
 
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConstantsService {
 
-  level: string[] = ['1', '2', '3', '4', '5'];
+  level: string[] = ['0', '1', '2', '3', '4', '5'];
 
   lessonsList: string[] = [
     'El Uno',

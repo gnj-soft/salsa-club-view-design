@@ -25,8 +25,8 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 9, firstName: 'Carles', lastName: 'KOUAM', level: 2 },
       { id: 10, firstName: 'Richard', lastName: 'PULA', level: 1 },
       { id: 11, firstName: 'Tima Zahra', lastName: 'DIRANE', level: 0 },
-      { id: 11, firstName: 'Marion', lastName: 'DUSSEAUX', level: 0 },
-      { id: 12, firstName: 'Joséphine', lastName: 'DRUESNE', level: 3 }
+      { id: 12, firstName: 'Marion', lastName: 'DUSSEAUX', level: 0 },
+      { id: 13, firstName: 'Joséphine', lastName: 'DRUESNE', level: 3 }
     ];
     const lessons = [
       { id: 21, lessonName: 'Sombrero', level: 1, startDate: new Date(2018, 3, 15), endDate: new Date(2018, 6, 15), duration: 3 },
@@ -55,7 +55,7 @@ export class InMemoryDataService implements InMemoryDbService {
     const logins = [
       { id: 2, username: 'raphaella', password: 'student', email: "rapha.student@gmail.com" },
       { id: 3, username: 'ghis soft', password: 'jefsoft', email: "gigi.soft@gmail.com" },
-      { id: 4, username: 'owélie', password: 'salsa', email: "awelie.salsa@gmail.com" },
+      { id: 4, username: 'owélie', password: 'salsa', email: "owelie.salsa@gmail.com" },
       { id: 5, username: 'chrichri', password: 'defontes', email: "de.fontes@hotmail.fr" },
       { id: 6, username: 'flory L', password: 'floryboet', email: "flory.boet@gmail.com" },
       { id: 7, username: 'kabil rachid', password: 'guendouze', email: "guendouze@yahoo.com" },
@@ -63,7 +63,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 9, username: 'le boss', password: 'carleskouam', email: "carles.kouam@gmail.com" },
       { id: 10, username: 'le richou', password: 'richoupula', email: "richard.pula@gmail.com" },
       { id: 11, username: 'zahra t', password: 'zahrat', email: "zahra.zahra@live.com" },
-      { id: 12, username: 'foot throwing', password: 'dusseaux', email: "marion.dusseaux@live.com" },
+      { id: 12, username: 'marion dusseaux', password: 'dusseaux', email: "marion.dusseaux@live.com" },
       { id: 13, username: 'la grande', password: 'druesne', email: "jose.druesne@gmail.com" }
     ];
     return {teachers, members, lessons, planings, logins};

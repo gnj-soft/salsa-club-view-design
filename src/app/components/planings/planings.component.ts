@@ -45,7 +45,7 @@ export class PlaningsComponent implements OnInit {
 
   delete(planing: Planing): void {
     this.planings = this.planings.filter(p => p !== planing);
-    this.planingService.deletePlaning(planing).subscribe;
+    this.planingService.deletePlaning(planing).subscribe();
   }
 
   onSubmit(data): void {

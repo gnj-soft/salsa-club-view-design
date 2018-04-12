@@ -38,10 +38,10 @@
 <h1>All Planings</h1>
 <ul class="planings">
   <li *ngFor="let planing of planings">
-    Lesson Id :
-    <a routerLink="/lesson-detail/{{planing.lessonId}}">{{planing.lessonId}} </a>
-    -- Teacher Id :
-    <a routerLink="/teacher-detail/{{planing.teacherId}}">{{planing.teacherId}}</a>
+    Lesson Infos :
+    <a routerLink="/lesson-detail/{{planing.lessonId}}">{{planing.lessonId}} - {{planing.lessonName}} </a>
+    -- Teacher :
+    <a routerLink="/teacher-detail/{{planing.teacherId}}">{{planing.teacherId}} - {{planing.teacherFirstName}} {{planing.teacherLastName}}</a>
     -- Information : {{planing.note}}
     <button class="delete" title="delete planing" (click)="delete(planing)">X</button>
   </li>

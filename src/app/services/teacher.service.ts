@@ -15,43 +15,46 @@ const httpOptions = {
 @Injectable()
 export class TeacherService {
 
-  //private teachersUrl = 'http://localhost:8080/teachers';
-  private teachersUrl = 'api/teachers';
+  //private teachersUrl = 'api/teachers';
+  private teachersUrl = 'http://localhost:8080/teachers';
 
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   getTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(this.teachersUrl)
-      .pipe(
-        tap(teachers =>
-          catchError(this.handleError('getTeachers', []))
-        ));
+    return this.http.get<Teacher[]>(this.teachersUrl).pipe(
+      tap(teachers => this.log(`Fetched teachers`)),
+      catchError(this.handleError<Teacher[]>('getTeachers', []))
+    );
   }
 
   getTeacher(id: number): Observable<Teacher> {
     const url = `${this.teachersUrl}/${id}`;
-    return this.http.get<Teacher>(url).
-      pipe(tap(_ => catchError(this.handleError<Teacher>(`gerTeacher id=${id}`))));
+    return this.http.get<Teacher>(url).pipe(
+      tap(_ => this.log(`Fetched teacher id=${id}`)),
+      catchError(this.handleError<Teacher>(`gerTeacher id=${id}`))
+    );
   }
 
   updateTeacher(teacher: Teacher): Observable<any> {
-    return this.http.put(this.teachersUrl, teacher, httpOptions)
-      .pipe(catchError(this.handleError<any>('updateTeacher')));
+    return this.http.put(this.teachersUrl, teacher, httpOptions).pipe(
+      tap(_ => this.log(`Updated teacher id=${teacher.id}`)),
+      catchError(this.handleError<any>('updateTeacher'))
+    );
   }
 
   addTeacher(teacher: Teacher): Observable<Teacher> {
-    return this.http.post<Teacher>(this.teachersUrl, teacher, httpOptions)
-      .pipe(
-        tap((teacher: Teacher) => this.log(`added Teacher id=${teacher.id}`)),
-        catchError(this.handleError<Teacher>('addTeacher')));
+    return this.http.post<Teacher>(this.teachersUrl, teacher, httpOptions).pipe(
+      tap(teacher => this.log(`Added teacher id=${teacher.id}`)),
+      catchError(this.handleError<Teacher>('addTeacher'))
+    );
   }
 
   deleteTeacher(teacher: Teacher): Observable<Teacher> {
     const url = `${this.teachersUrl}/${teacher.id}`;
-    return this.http.delete<Teacher>(url, httpOptions)
-      .pipe(
-        tap(_ => this.log(`deleted teacher id=${teacher.id}`)),
-        catchError(this.handleError<Teacher>('deleteTeacher')));
+    return this.http.delete<Teacher>(url, httpOptions).pipe(
+      tap(_ => this.log(`Deleted teacher id=${teacher.id}`)),
+      catchError(this.handleError<Teacher>('deleteTeacher'))
+    );
   }
 
   /**

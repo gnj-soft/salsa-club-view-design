@@ -15,31 +15,31 @@ const httpOptions = {
 @Injectable()
 export class LoginService {
 
-  private loginsUrl = 'api/logins';
+  //private loginsUrl = 'api/logins';
+  private loginsUrl = 'http://localhost:8080/logins';
 
   constructor(private messageService: MessageService, private http: HttpClient) { }
 
   addLogin(login: Login): Observable<Login> {
-     return this.http.post<Login>(this.loginsUrl, login, httpOptions)
-       .pipe(
-         tap(returnLogin => this.log(`added addLogin id=${returnLogin.id}`)),
-         catchError(this.handleError<Login>('addLogin')));
+    return this.http.post<Login>(this.loginsUrl, login, httpOptions).pipe(
+      tap(login => this.log(`Added login id=${login.id}`)),
+      catchError(this.handleError<Login>('addLogin'))
+    );
     //return this.http.post<Login>(this.loginsUrl, login, httpOptions);
   }
 
   updateLogin(login: Login): Observable<any> {
-    return this.http.put(this.loginsUrl, login, httpOptions)
-      .pipe(
-        tap(_ => this.log(`update login id=${login.id}`)),
-        catchError(this.handleError<any>('updateLogin')));
+    return this.http.put(this.loginsUrl, login, httpOptions).pipe(
+      tap(_ => this.log(`Updated login id=${login.id}`)),
+      catchError(this.handleError<any>('updateLogin'))
+    );
   }
 
   getLogins(): Observable<Login[]> {
-    return this.http.get<Login[]>(this.loginsUrl)
-      .pipe(
-        tap(logins => this.log(`getLogins`)),
-          catchError(this.handleError('getMembers', []))
-        );
+    return this.http.get<Login[]>(this.loginsUrl).pipe(
+      tap(logins => this.log(`Fetched logins`)),
+      catchError(this.handleError<Login[]>('getLogins', []))
+    );
   }
 
   /**
