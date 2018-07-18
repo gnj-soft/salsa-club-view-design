@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService } from './in-memory-data.service';
 
 import { MyOwnMaterialModule } from "./modules/my-own-material/my-own-material.module";
 
@@ -31,10 +32,15 @@ import { MemberService } from './services/member.service';
 import { PlaningService } from './services/planing.service';
 import { LessonService } from './services/lesson.service';
 import { LoginService } from './services/login.service';
-
-import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
 import { ConstantsService } from './services/constants.service';
 import { InitDataService } from './services/init-data.service';
+import { Interceptor } from './core/app.interceptor';
+import { AuthService } from './services/auth.service';
+
+import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
+import { TokenStorage } from './core/token.storage';
+
+
 
 
 
@@ -53,7 +59,7 @@ import { InitDataService } from './services/init-data.service';
     FooterComponent,
     LoginComponent,
     NewLoginComponent,
-    FirstCapitalLetterPipe,
+    FirstCapitalLetterPipe
   ],
   imports: [
     BrowserModule,
@@ -62,8 +68,9 @@ import { InitDataService } from './services/init-data.service';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpModule,
     HttpClientModule,
-    
+
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
@@ -79,7 +86,14 @@ import { InitDataService } from './services/init-data.service';
     LessonService,
     LoginService,
     ConstantsService,
-    InitDataService
+    InitDataService,
+    AuthService,
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
